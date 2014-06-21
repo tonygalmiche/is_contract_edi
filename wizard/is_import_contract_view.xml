@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_is_import_contract" model="ir.ui.view">
+            <field name="name">is.import.contract.form</field>
+            <field name="model">is.import.contract</field>
+            <field name="arch" type="xml">
+                <form string="Importation des commandes ouvertes" version="7.0">
+                    <group>
+					    <field name="partner_id" on_change="onchange_partner_id(partner_id, context)" domain="[('import_function','!=','')]" />
+						<field name="import_function"/>
+						<field name="file" />
+					</group>
+                    <footer>
+                        <button string='Importer' name="import_contract_orders" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_is_import_contract" model="ir.actions.act_window">
+            <field name="name">Importer Contrats</field>
+            <field name="res_model">is.import.contract</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="view_is_import_contract"/>
+           <field name="target">new</field>
+        </record>
+
+		<menuitem action="action_is_import_contract" 
+				  id="menu_action_is_import_contract" 
+				  parent="menu_is_importation" sequence="1"/>
+				  
+		
+		<record id="is_contract_notfound_view" model="ir.ui.view">
+             <field name="name">is.contract.notfound.view</field>
+             <field name="model">is.import.contract</field>
+             <field name="arch" type="xml">
+                <form string="Contrats non trouves" version="7.0">
+                	<separator string="Contrats non trouves"/>
+                	<label string="Les contrats suivants n'existent pas sur votre systeme, Essayer de les creer pour achever l'import."/>
+                        <field name="contract_ids" nolabel="1" readonly="1">
+							<form string="Contrats non trouves" version="7.0">
+                                <group>
+									<field name="ref_product" />
+									<field name="ref_partner" />
+								</group>
+							</form>
+                            <tree string="Contrats non trouves" editable="bottom">
+                                <field name="ref_product" />
+								<field name="ref_partner" />
+                            </tree>
+						</field>
+                    <footer>
+                        <button string="Close" class="oe_highlight" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+		
+    </data>
+</openerp>

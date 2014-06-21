@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="is_import_contract_form">
+			<field name="name">is.import.contract.form</field>
+			<field name="model">is.import.contract</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Importer des contrats " version="7.0">
+					<header>
+						<button name="import_contract_orders" string="Importer" type="object" class="oe_highlight" />
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								Importer  les Contrats
+							</h1>
+						</div>
+
+						<group>
+							<group>
+								<field name="partner_id" on_change="onchange_partner_id(partner_id, context)" domain="[('import_function','!=','')]" />
+								<field name="import_function" />
+								<field name="file" />								
+							</group>
+							<group>
+							</group>
+						</group>
+						<field name="notfound_contract" invisible="1" />
+						<separator string="Contrats non trouves" attrs="{'invisible': [('notfound_contract', '=', False)]}" />
+						<field name="contract_ids" attrs="{'invisible': [('notfound_contract', '=', False)]}" readonly="1">
+							<form string="Contrats non trouves" version="7.0">
+                                <group>
+									<field name="ref_product" />
+									<field name="ref_partner" />
+								</group>
+							</form>
+                            <tree string="Contrats non trouves" editable="bottom">
+                                <field name="ref_product" />
+								<field name="ref_partner" />
+                            </tree>
+						</field>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_is_import_contract" model="ir.actions.act_window">
+			<field name="name">Importer contrats</field>
+			<field name="res_model">is.import.contract</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+		</record>
+
+
+		<menuitem action="action_is_import_contract" 
+				  id="menu_action_is_import_contract" 
+				  parent="menu_is_importation" sequence="1"/>
+
+	</data>
+</openerp>

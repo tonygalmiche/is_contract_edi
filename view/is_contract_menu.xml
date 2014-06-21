@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+	<menuitem name="Importation"
+            id="menu_is_importation"
+			parent="is_automobile_contract.menu_is_contrat"
+			sequence="20"/>
+
+    </data>
+</openerp>
