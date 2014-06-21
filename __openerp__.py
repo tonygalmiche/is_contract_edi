@@ -1,21 +1,15 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
-#
-#    Asma BOUSSELMI - CONSULTANT OPENERP CONFIRME
-#
-##############################################################################
 
 {
     'name': 'Importation des commandes ouvertes',
     'version': '1.0',
-    'category': 'Sales Management',
+    'category': 'InfoSaône',
     'description': """
 Importation des commandes ouvertes via des fichiers xml et csv
     """,
-    'author': 'Asma BOUSSELMI',
+    'author': 'Tony GALMICHE / Asma BOUSSELMI',
+    'maintainer': 'InfoSaône',
+    'website': 'http://www.infosaone.com',
     'depends': ['sale', 'is_automobile_contract'],
     'data': [
              'view/is_contract_menu.xml',
